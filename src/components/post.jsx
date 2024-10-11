@@ -13,7 +13,7 @@ export const PostUI = () => {
           />
         </picture>
         <div className="container-post__username">
-          <h3>John doe</h3>
+          <h3>John doe 24</h3>
           <p>@JohnDoe24</p>
         </div>
       </div>
