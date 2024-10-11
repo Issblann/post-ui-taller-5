@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import '../styles/post.styles.css';
 export const PostUI = () => {
   return (
     <section className="container-post">

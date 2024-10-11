@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostUI } from './components/post/post';
+import { PostUI } from './components/post';
 import './App.css';
 export const Layout = () => {
   return (
