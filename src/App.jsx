@@ -1,17 +1,8 @@
 import './App.css';
-import ToolsBar from './components/Tools-bar/ToolsBar';
+import { Layout } from './Layout';
 
 function App() {
-  return (
-    <>
-      <div>
-        <h1>POST UI</h1>
-        <ToolsBar>
-
-        </ToolsBar>
-      </div>
-    </>
-  );
+  return <Layout />;
 }
 
 export default App;
