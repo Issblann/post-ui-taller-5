@@ -4,3 +4,10 @@
   padding: 2rem;
   text-align: center;
 }
+const Comment = ({ text }) => {
+  return (
+    <div style={{ color: 'blue', border: '1px solid blue', padding: '10px', margin: '5px' }}>
+      {text}
+    </div>
+  );
+};

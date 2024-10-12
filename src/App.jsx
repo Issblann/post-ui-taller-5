@@ -1,12 +1,12 @@
-import './App.css';
+//Importamos componentes necesarios
+import {PostComentario}  from './components/post-comments/PostComments';
+import './index.css'
 
 function App() {
   return (
-    <>
-      <div>
-        <h1>POST UI</h1>
-      </div>
-    </>
+    <div className="App">
+      <PostComentario  />
+    </div>
   );
 }
 
