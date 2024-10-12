@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useState } from 'react';
 import { FcLike } from 'react-icons/fc';
 import { MdComment } from 'react-icons/md';
@@ -9,11 +9,11 @@ const ToolsBar = () => {
   const initialLikes = Math.floor(Math.random() * 1000) + 1;
   const [likes, setLikes] = useState(initialLikes);
 
-  const randomComments = Math.floor(Math.random() * 50) + 1;
-  const randomShares = Math.floor(Math.random() * 300) + 1;
+  const randomComments = useMemo(() => Math.floor(Math.random() * 50) + 1, []);
+  const randomShares = useMemo(() => Math.floor(Math.random() * 300) + 1, []);
 
   const handleLikeClick = () => {
-    setLikes(likes + 1); // Incrementar los likes en uno
+    setLikes(likes + 1);
   };
 
   return (
