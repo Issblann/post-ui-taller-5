@@ -16,7 +16,8 @@ main {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
+  }
+
 
 .layout--separator {
   border-bottom: 1px solid #c2c1c1;
