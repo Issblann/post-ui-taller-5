@@ -7,10 +7,10 @@ export const Layout = () => {
     <main>
       <h1>HOME</h1>
       <PostCard />
-      <span className="layout--separator"></span>
-      <PostUI />
-      <span className="layout--separator"></span>
-      <PostUI />
+
+      <PostCard />
+
+      <PostCard />
     </main>
   );
 };
