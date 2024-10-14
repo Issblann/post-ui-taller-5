@@ -1,8 +1,15 @@
 import './App.css';
-import { Layout } from './Layout';
+import Layout from "./Layout";
 
 function App() {
-  return <Layout />;
+  return (
+    <>
+      <div>
+        <h1>POST UI</h1>
+        <Layout />
+      </div>
+    </>
+  );
 }
 
 export default App;
