@@ -1,13 +1,8 @@
-//Importamos componentes necesarios
-import {PostComentario}  from './components/post-comments/PostComments';
-import './index.css'
+import './App.css';
+import { Layout } from './Layout';
 
 function App() {
-  return (
-    <div className="App">
-      <PostComentario  />
-    </div>
-  );
+  return <Layout />;
 }
 
 export default App;

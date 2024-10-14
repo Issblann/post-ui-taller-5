@@ -1,93 +1,62 @@
-import React, { useState } from 'react';
+import React from 'react'
+import { MdComment } from 'react-icons/md';
+import '../../styles/ToolsBar.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGetComment, setComment } from '../../redux/slice/updateComment';
 
-// Componente principal de manejo de comentarios
-export const PostComentario = () => {
-  const [comentarios, setComentarios] = useState([]);
-  const [nuevoComentario, setNuevoComentario] = useState('');
-  const [respuesta, setRespuesta] = useState({ id: null, texto: '' });
+export default function PostComments() {
+  const dispatch = useDispatch()
+  const showComment = useSelector(state => state.comment.showComment)
 
-  // Simulando petición a un backend
-  const fetchComentarios = async () => {
-    const response = await fetch('https://jsonplaceholder.typicode.com/comments');
-    const data = await response.json();
-    setComentarios(data.slice(0, 5)); // Limitar a 5 comentarios de ejemplo
-  };
+  const openComment = () => {
+    console.log("Estoy comentando: ", showComment)
+    dispatch(setGetComment(comments))
+    dispatch(setComment(!showComment))
+  }
 
-  const agregarComentario = () => {
-    if (nuevoComentario) {
-      const comentario = {
-        id: comentarios.length + 1,
-        texto: nuevoComentario,
-        respuestas: [],
-      };
-      setComentarios([...comentarios, comentario]);
-      setNuevoComentario('');
+  const comments = [
+    {
+      postId: 1,
+      id: 1,
+      name: "id labore ex et quam laborum",
+      email: "Eliseo@gardner.biz",
+      body: "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+    },
+    {
+      postId: 1,
+      id: 2,
+      name: "quo vero reiciendis velit similique earum",
+      email: "Jayne_Kuhic@sydney.com",
+      body: "est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et"
+    },
+    {
+      postId: 1,
+      id: 3,
+      name: "odio adipisci rerum aut animi",
+      email: "Nikita@garfield.biz",
+      body: "quia molestiae reprehenderit quasi aspernatur\naut expedita occaecati aliquam eveniet laudantium\nomnis quibusdam delectus saepe quia accusamus maiores nam est\ncum et ducimus et vero voluptates excepturi deleniti ratione"
+    },
+    {
+      postId: 1,
+      id: 4,
+      name: "alias odio sit",
+      email: "Lew@alysha.tv",
+      body: "non et atque\noccaecati deserunt quas accusantium unde odit nobis qui voluptatem\nquia voluptas consequuntur itaque dolor\net qui rerum deleniti ut occaecati"
+    },
+    {
+      postId: 1,
+      id: 5,
+      name: "vero eaque aliquid doloribus et culpa",
+      email: "Hayden@althea.biz",
+      body: "harum non quasi et ratione\ntempore iure ex voluptates in ratione\nharum architecto fugit inventore cupiditate\nvoluptates magni quo et"
     }
-  };
-
-  const eliminarComentario = (id) => {
-    const comentariosActualizados = comentarios.filter(comentario => comentario.id !== id);
-    setComentarios(comentariosActualizados);
-  };
-
-  const responderComentario = (id) => {
-    if (respuesta.texto) {
-      const comentariosActualizados = comentarios.map(comentario => {
-        if (comentario.id === id) {
-          return {
-            ...comentario,
-            respuestas: [...comentario.respuestas, { texto: respuesta.texto }],
-          };
-        }
-        return comentario;
-      });
-      setComentarios(comentariosActualizados);
-      setRespuesta({ id: null, texto: '' });
-    }
-  };
+  ]
 
   return (
-    <div>
-      <h2>Post de Comentarios</h2>
-
-      <button onClick={fetchComentarios}>Cargar Comentarios</button>
-
-      <div>
-        <input
-          type="text"
-          value={nuevoComentario}
-          onChange={(e) => setNuevoComentario(e.target.value)}
-          placeholder="Agregar comentario" />
-        <button onClick={agregarComentario}>Agregar</button>
-      </div>
-
-      <ul>
-        {comentarios.map(comentario => (
-          <li key={comentario.id}>
-            <p>{comentario.texto}</p>
-            <button onClick={() => eliminarComentario(comentario.id)}>Eliminar</button>
-
-            {/* Formulario para agregar respuesta */}
-            <div>
-              <input
-                type="text"
-                placeholder="Responder..."
-                value={respuesta.id === comentario.id ? respuesta.texto : ''}
-                onChange={(e) => setRespuesta({ id: comentario.id, texto: e.target.value })} />
-              <button onClick={() => responderComentario(comentario.id)}>Responder</button>
-            </div>
-
-            {/* Mostrar respuestas */}
-            {comentario.respuestas.length > 0 && (
-              <ul>
-                {comentario.respuestas.map((respuesta, index) => (
-                  <li key={index}>{respuesta.texto}</li>
-                ))}
-              </ul>
-            )}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+    <>
+      <button onClick={openComment} className="ToolsBar-reactions">
+        <MdComment /> Comments
+      </button>
+    </>
+  )
+}
