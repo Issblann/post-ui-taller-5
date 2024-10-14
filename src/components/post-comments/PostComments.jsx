@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setGetComment, setComment } from '../../redux/slice/updateComment';
 
 export default function PostComments() {
+  
   const dispatch = useDispatch()
   const showComment = useSelector(state => state.comment.showComment)
 
