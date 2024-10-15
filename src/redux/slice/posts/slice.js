@@ -1,18 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit';
 import initialState from './state';
 import reducers from './reducers';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async ({ start, limit }) => {
-    const response = await axios.get(
-      `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
-    );
+    try {
+      const response = await axios.get(
+        `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
+      );
 
-    console.log('response.data:', response.data);
-    return response.data;
+      return response.data;
+    } catch (error) {
+      return error;
+    }
   }
 );
 const postSlice = createSlice({
@@ -25,8 +27,8 @@ const postSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        state.posts = [...state.posts, ...action.payload];
-
+        state.posts = [...action.payload];
+        state.limit = state.limit + 15;
         state.status = 'succeeded';
       })
       .addCase(fetchPosts.rejected, (state, action) => {
