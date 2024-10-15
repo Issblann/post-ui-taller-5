@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import initialState from './state';
 import reducers from './reducers';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
@@ -9,6 +10,8 @@ export const fetchPosts = createAsyncThunk(
     const response = await axios.get(
       `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
     );
+
+    console.log('response.data:', response.data);
     return response.data;
   }
 );
@@ -22,11 +25,8 @@ const postSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
-        if (action.payload.length > 0) {
-          state.posts = [...state.posts, ...action.payload]; // Agregar los nuevos posts a los existentes
-        } else {
-          state.tieneMas = false;
-        }
+        state.posts = [...state.posts, ...action.payload];
+
         state.status = 'succeeded';
       })
       .addCase(fetchPosts.rejected, (state, action) => {

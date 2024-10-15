@@ -17,7 +17,7 @@ export const PostCard = () => {
     <div className="post-card__container">
       <PostUI />
       <ToolsBar />
-      {showComment ? <Comments /> : <div></div>}
+      <Comments />
     </div>
   );
 };

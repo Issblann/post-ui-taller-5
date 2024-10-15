@@ -10,23 +10,23 @@ export const Layout = () => {
   const limit = 15;
   const totalPosts = 15;
 
-  const fetchPosts = async () => {
-    try {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
-      );
-      const data = await response.json();
-      setPosts(data);
-    } catch (error) {
-      console.error('Error fetching posts:', error);
-    }
-  };
+  // const fetchPosts = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
+  //     );
+  //     const data = await response.json();
+  //     setPosts(data);
+  //   } catch (error) {
+  //     console.error('Error fetching posts:', error);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (start < totalPosts) {
-      fetchPosts();
-    }
-  }, [start]);
+  // useEffect(() => {
+  //   if (start < totalPosts) {
+  //     fetchPosts();
+  //   }
+  // }, [start]);
 
   // useEffect(() => {
   //   const fetchComments = async () => {
