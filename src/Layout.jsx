@@ -2,73 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { PostUI } from './components/post';
 import './App.css';
 import { PostCard } from './components/post-card/post-card';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchPosts } from './redux/slice/posts/slice';
 
 export const Layout = () => {
-  const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState([]);
-  const [start, setStart] = useState(0);
-  const limit = 15;
-  const totalPosts = 15;
+  const { posts, limit, start } = useSelector((state) => state.post);
 
-  // const fetchPosts = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       `https://jsonplaceholder.typicode.com/posts?_start=${start}&_limit=${limit}`
-  //     );
-  //     const data = await response.json();
-  //     setPosts(data);
-  //   } catch (error) {
-  //     console.error('Error fetching posts:', error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (start < totalPosts) {
-  //     fetchPosts();
-  //   }
-  // }, [start]);
-
-  // useEffect(() => {
-  //   const fetchComments = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         `https://jsonplaceholder.typicode.com/comments?postId=${posts.id}`
-  //       );
-  //       const data = await response.json();
-  //       setComments(data);
-  //     } catch (error) {
-  //       console.error('Error fetching comments:', error);
-  //     }
-  //   };
-
-  //   fetchComments();
-  // }, []);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + document.documentElement.scrollTop + 1 >=
-        document.documentElement.offsetHeight
-      ) {
-        if (start < totalPosts) {
-          setStart((prevStart) => prevStart + limit);
-        }
-      }
-    };
+    dispatch(fetchPosts({ start, limit }));
+  }, []);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [start]);
-
-  console.log(comments, 'comentarios');
+  const loadMorePost = () => {
+    dispatch(fetchPosts({ start: posts.length, limit: limit }));
+  };
   return (
     <main>
       <h1>HOME</h1>
-      <PostCard />
-      <PostCard />
-      <PostCard />
+      {posts.map((post) => (
+        <PostCard key={post.id} post={post} />
+      ))}
+      <button onClick={loadMorePost}>Cargar más posts</button>
     </main>
   );
 };
