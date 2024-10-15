@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/post.styles.css';
-export const PostUI = () => {
+export const PostUI = ({ post }) => {
   return (
     <section className="container-post">
       <div className="container-post__profile">
@@ -19,12 +19,7 @@ export const PostUI = () => {
       </div>
 
       <div className="container-post__content">
-        <p className="container-post__text-content">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-          blanditiis molestias ex cupiditate repellendus, vel expedita
-          perferendis iure eum rerum! Doloremque numquam excepturi expedita
-          reprehenderit odio ea consequatur perferendis ducimus?
-        </p>
+        <p className="container-post__text-content">{post.body}</p>
         <span className="container-post__show-more">Show more...</span>
         <small className="container-post--time">Hace 2 horas</small>
       </div>
