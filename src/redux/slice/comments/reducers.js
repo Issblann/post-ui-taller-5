@@ -1,6 +1,7 @@
 export default {
   setComment: (state, action) => {
-    state.showComment = action.payload;
+    const { postId, visibility } = action.payload;
+    state.showComment[postId] = visibility;
   },
   setGetComment: (state, action) => {
     state.getComments = action.payload;
