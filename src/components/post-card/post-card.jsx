@@ -1,6 +1,7 @@
 import React from 'react';
 import { PostUI } from '../post';
 import ToolsBar from '../Tools-bar/ToolsBar';
+
 import Comments from '../post-comments/Comments';
 import { useSelector } from 'react-redux';
 
