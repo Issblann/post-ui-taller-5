@@ -9,7 +9,6 @@ export default function PostComments() {
   const { showComment } = useSelector((state) => state.comment);
 
   const openComment = () => {
-    console.log('Estoy comentando: ', showComment);
     dispatch(actions.setGetComment(comments));
     dispatch(actions.setComment(!showComment));
   };

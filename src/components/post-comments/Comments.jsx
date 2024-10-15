@@ -1,15 +1,16 @@
-import React from 'react'
-import '../../styles/comments.css'
-import { useSelector } from 'react-redux'
+import React from 'react';
+import '../../styles/comments.css';
+import { useSelector } from 'react-redux';
 
 function Comments() {
-  const getComments = useSelector(state => state.comment.getComments)
+  const { comments } = useSelector((state) => state.comment);
 
   return (
-    <div >
-      {getComments && getComments.length > 0 ? (
-        getComments.map(comment => (
-          <div key={comment.id} className='containerComment'>
+    <div>
+      {comments &&
+        comments.length > 0 &&
+        comments.map((comment) => (
+          <div key={comment.id} className="containerComment">
             <div className="container-post__profile">
               <picture className="container-post__picture">
                 <img
@@ -19,14 +20,13 @@ function Comments() {
                   height={50}
                 />
               </picture>
-              <p className='emailContent' >{comment.email} </p>
+              <p className="emailContent">{comment.email} </p>
             </div>
-            <h3 className='nameTitle'>{comment.name}</h3>
-            <p className='bodyContent'>{comment.body}</p>
+            <h3 className="nameTitle">{comment.name}</h3>
+            <p className="bodyContent">{comment.body}</p>
           </div>
-        ))
-      ) : <p>No hay comentarios</p>}
+        ))}
     </div>
-  )
+  );
 }
-export default Comments
+export default Comments;

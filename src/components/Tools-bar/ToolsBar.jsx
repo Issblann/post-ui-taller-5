@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useState } from 'react';
 import { FcLike } from 'react-icons/fc';
 import { MdComment } from 'react-icons/md';
@@ -6,19 +6,27 @@ import { TbBellShare } from 'react-icons/tb';
 import '../../styles/ToolsBar.css';
 import PostComments from '../post-comments/PostComments';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../../redux/slice/posts/slice';
 
-const ToolsBar = () => {
+import { actions, fetchComments } from '../../redux/slice/comments/slice';
+
+const ToolsBar = ({ post }) => {
   const initialLikes = Math.floor(Math.random() * 1000) + 1;
   const [likes, setLikes] = useState(initialLikes);
-
-  const randomComments = useMemo(() => Math.floor(Math.random() * 50) + 1, []);
+  const { comments } = useSelector((state) => state.comment);
+  const showComment = useSelector(
+    (state) => state.comment.showComment[post.id] || false
+  );
   const randomShares = useMemo(() => Math.floor(Math.random() * 300) + 1, []);
+  const dispatch = useDispatch();
 
   const handleLikeClick = () => {
     setLikes(likes + 1);
   };
 
+  const handleCommentClick = () => {
+    dispatch(fetchComments({ postId: post.id }));
+    dispatch(actions.setComment({ postId: post.id, visibility: !showComment }));
+  };
   const loadMorePosts = () => {};
 
   return (
@@ -27,8 +35,8 @@ const ToolsBar = () => {
         <FcLike /> {likes} Likes
       </button>
 
-      <button className="ToolsBar-reactions" onClick={handleLikeClick}>
-        <MdComment /> {likes} Comentarios
+      <button className="ToolsBar-reactions" onClick={handleCommentClick}>
+        <MdComment /> {showComment ? 'Cerrar' : 'Comentarios'}
       </button>
       <button className="ToolsBar-reactions" onClick={loadMorePosts}>
         <TbBellShare /> {randomShares} Shares
