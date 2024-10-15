@@ -1,4 +1,6 @@
 export default {
-  showComment: false,
-  getComments: [],
+  comments: [],
+  status: 'idle',
+  error: null,
+  showComment: {},
 };
