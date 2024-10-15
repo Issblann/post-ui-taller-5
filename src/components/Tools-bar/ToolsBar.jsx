@@ -9,10 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/slice/posts/slice';
 
 const ToolsBar = () => {
-  const dispatch = useDispatch();
-
-  const posts = useSelector((state) => state.post);
-  console.log(posts);
   const initialLikes = Math.floor(Math.random() * 1000) + 1;
   const [likes, setLikes] = useState(initialLikes);
 
