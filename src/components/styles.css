@@ -1,0 +1,15 @@
+.comment {
+    color: blue;                  /* Establece el color del texto a azul */
+    border: 1px solid blue;      /* Establece un borde azul */
+    padding: 10px;               /* Agrega espacio interno */
+    margin: 5px;                 /* Agrega margen externo */
+    border-radius: 5px;          /* Opcional: redondea las esquinas del borde */
+  }
+  .comment {
+    color: blue;
+    border: 1px solid blue;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+  

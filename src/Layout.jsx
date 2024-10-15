@@ -67,9 +67,7 @@ export const Layout = () => {
     <main>
       <h1>HOME</h1>
       <PostCard />
-
       <PostCard />
-
       <PostCard />
     </main>
   );

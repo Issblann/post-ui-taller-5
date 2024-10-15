@@ -4,8 +4,11 @@ import { FcLike } from 'react-icons/fc';
 import { MdComment } from 'react-icons/md';
 import { TbBellShare } from 'react-icons/tb';
 import '../../styles/ToolsBar.css';
+import PostComments from '../post-comments/PostComments';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/slice/posts/slice';
+
+
 const ToolsBar = () => {
   const dispatch = useDispatch();
 
@@ -22,16 +25,12 @@ const ToolsBar = () => {
   };
 
   const loadMorePosts = () => {
-    dispatch(actions.loadMore());
   };
 
   return (
     <div className="Tools-bar">
       <button className="ToolsBar-reactions" onClick={handleLikeClick}>
         <FcLike /> {likes} Likes
-      </button>
-      <button className="ToolsBar-reactions">
-        <MdComment /> {randomComments} Comments
       </button>
       <button className="ToolsBar-reactions" onClick={loadMorePosts}>
         <TbBellShare /> {randomShares} Shares
