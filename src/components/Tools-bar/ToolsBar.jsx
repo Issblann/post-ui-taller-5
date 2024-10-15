@@ -8,7 +8,6 @@ import PostComments from '../post-comments/PostComments';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../redux/slice/posts/slice';
 
-
 const ToolsBar = () => {
   const dispatch = useDispatch();
 
@@ -24,13 +23,16 @@ const ToolsBar = () => {
     setLikes(likes + 1);
   };
 
-  const loadMorePosts = () => {
-  };
+  const loadMorePosts = () => {};
 
   return (
     <div className="Tools-bar">
       <button className="ToolsBar-reactions" onClick={handleLikeClick}>
         <FcLike /> {likes} Likes
+      </button>
+
+      <button className="ToolsBar-reactions" onClick={handleLikeClick}>
+        <MdComment /> {likes} Comentarios
       </button>
       <button className="ToolsBar-reactions" onClick={loadMorePosts}>
         <TbBellShare /> {randomShares} Shares
