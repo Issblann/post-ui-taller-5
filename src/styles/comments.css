@@ -1,32 +1,33 @@
 .nameTitle {
-    text-align: left;
-    margin: 5px;
+  text-align: left;
+  margin: 5px;
 }
 
 .emailContent {
-    margin: 5px;
-    text-align: left;
-    font-weight: 600;
-    color: rgb(155, 153, 153);
+  margin: 5px;
+  text-align: left;
+  font-weight: 600;
+  color: rgb(155, 153, 153);
 }
 
 .bodyContent {
-    margin: 5px;
-    text-align: left;
+  margin: 5px;
+  text-align: left;
 }
 
 .containerComment {
-    border-bottom: 1px solid #c2c1c1;
+  border-bottom: 1px solid #c2c1c1;
+  padding: 20px;
 }
 
 .container-post__profile {
-    display: flex;
-    gap: 1rem;
-    padding: 1rem 0;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  align-items: center;
+  width: 100%;
 }
 
 .container-post__picture img {
-    display: block;
+  display: block;
 }
